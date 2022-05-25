@@ -8,9 +8,7 @@ import 'package:giocomattia/components/player.dart';
 
 class DialogueBox extends SpriteComponent with HasGameRef, CollisionCallbacks {
 
-  late TextBoxComponent text;
-  late ShapeHitbox hitbox;
-  bool _hasCollided = false;
+  late MyTextBox text;
 
   @override
   Future<void>? onLoad() async {
@@ -22,27 +20,9 @@ class DialogueBox extends SpriteComponent with HasGameRef, CollisionCallbacks {
     return super.onLoad();
   }
 
-  @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    // TODO: implement onCollisionStart
-    super.onCollisionStart(intersectionPoints, other);
-    if(other is Player) {
-      bool _hasCollided = true;
-      add(MyTextBox("Ciao"));
-    }
-  }
-
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    // TODO: implement onCollision
-    super.onCollision(intersectionPoints, other);
-  }
-
-  @override
-  void onCollisionEnd(PositionComponent other) {
-    // TODO: implement onCollisionEnd
-    bool _hasCollided = false;
-    super.onCollisionEnd(other);
+  void show (String s) {
+    text = MyTextBox(s);
+    add(text);
   }
 
   ///Rect.fromLTWH(20, (gameRef.size.height/4) * 3, gameRef.size.widht -20, gameRef.size.height/4)

@@ -7,6 +7,8 @@ import 'package:giocomattia/scenemanager.dart';
 import '../helpers/direction.dart';
 import 'package:flame/sprite.dart';
 
+import 'cartello.dart';
+
 class Player extends SpriteAnimationComponent with HasGameRef, CollisionCallbacks { ///Protocollo Mixin
 
 
@@ -66,6 +68,10 @@ class Player extends SpriteAnimationComponent with HasGameRef, CollisionCallback
     if(other is Enemy) {
       _hasCollided = true;
       SceneManager().loadFightScene(this, other);
+    }
+    if (other is Cartello) {
+      _hasCollided = true;
+      _collisionDirection = direction;
     }
   }
 

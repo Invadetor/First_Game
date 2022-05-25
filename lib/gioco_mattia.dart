@@ -2,6 +2,8 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:giocomattia/Widgets/healthbar.dart';
+import 'package:giocomattia/components/cartello.dart';
+import 'package:giocomattia/components/dialoguebox.dart';
 import 'package:giocomattia/components/fightscene.dart';
 import 'package:giocomattia/components/mytextbox.dart';
 import 'components/enemy.dart';
@@ -19,7 +21,7 @@ class GiocoMattia extends FlameGame with HasCollisionDetection {
   final Mappa _mappa = Mappa();
   final FightScene _fightscene = FightScene();
   final Skeleton _skeleton = Skeleton(5, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
-
+  late Cartello _cartello;
 
   @override
   Future<void>? onLoad() {
@@ -50,11 +52,15 @@ class GiocoMattia extends FlameGame with HasCollisionDetection {
   }
 
   void loadMainMap() {
+    DialogueBox d = DialogueBox();
+    _cartello = Cartello(d);
     add(_mappa);
     ///Serve per dove la camera deve seguire, se togliamo l'acqua il personaggio continuà a caminare mentre la camera no
     _mappa.onLoad()?.then((value) => camera.worldBounds = Rect.fromLTWH(0, 0, _mappa.size.x, _mappa.size.y));
     add(player);
     add(_skeleton);
+    add(_cartello);
+    add(d);
     add(MyTextBox("Ciao"));
     addWorldCollision();
 
@@ -67,3 +73,8 @@ class GiocoMattia extends FlameGame with HasCollisionDetection {
     add(_fightscene);
   }
 }
+
+///TODO:Aggiungere un Tasto per Parlare
+///TODO:Se mi avvicino al Personaggio e clicco il Tasto per Parlare si accende il Dialogo
+///TODO:Aggiustare Menu
+///TODO:Aggiustare il caricamento della Fightscene

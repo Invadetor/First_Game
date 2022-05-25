@@ -67,6 +67,7 @@ flutter:
      - assets/images/enemies/undeadadventurer01.png
      - assets/images/FightBG.png
      - assets/images/png-transparent-dialog-box-video-game-dialogue-game-box-game-angle-rectangle.png
+     - assets/images/58ddcb0c1d37285.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
